@@ -14,8 +14,9 @@ public class Window
     String title;
     
     public Window(final String title, final int height, final int width, final Game game) {
-    	ImageIcon icon = new ImageIcon("C:\\Users\\ggl20\\Documents\\GitHub\\Java-Game_Final\\res\\images\\icon.jpg");
+    	ImageIcon icon = new ImageIcon("C:\\Users\\ggl20\\Documents\\George\\Programming\\Java\\Arena_Game_Icon.png");
     	
+    	//Frame Size
         JFrame frame = new JFrame(title);
         frame.setPreferredSize(new Dimension(width, height));
         frame.setMaximumSize(new Dimension(width, height));
@@ -24,9 +25,10 @@ public class Window
         //Icon Code
         frame.setIconImage(icon.getImage());
         
+        //Frame Configurations
         frame.add(game);
         frame.setResizable(true);
-        frame.setDefaultCloseOperation(3);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }

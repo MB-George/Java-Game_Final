@@ -29,7 +29,8 @@ public class Game extends Canvas implements Runnable
     private BufferedImage level;
     public int ammo;
     
-    public Game() {
+    public Game() 
+    {
         this.isRunning = false;
         this.level = null;
         this.ammo = 0;
@@ -43,23 +44,27 @@ public class Game extends Canvas implements Runnable
         this.loadLevel(this.level = loader.loadImage("/textures/Arena.png"));
     }
     
-    private synchronized void start() {
+    private synchronized void start() 
+    {
         this.isRunning = true;
         (this.thread = new Thread(this)).start();
     }
     
-    private synchronized void stop() {
+    private synchronized void stop() 
+    {
         this.isRunning = false;
         try {
             this.thread.join();
         }
-        catch (InterruptedException e) {
+        catch (InterruptedException e) 
+        {
             e.printStackTrace();
         }
     }
     
     @Override
-    public void run() {
+    public void run() 
+    {
         this.requestFocus();
         long lastTime = System.nanoTime();
         final double amountOfTicks = 60.0;

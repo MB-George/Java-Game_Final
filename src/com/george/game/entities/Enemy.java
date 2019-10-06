@@ -42,13 +42,25 @@ public class Enemy extends GameObject
         this.y += (int)this.velY;
         this.choose = this.r.nextInt(10);
         
-      //System.out.println("The direction is: " + direction);
-        if(counter % 10 == 0) {
+        System.out.println("The direction is: " + direction);
      	  direction = randomNumber.nextDouble() * 100;
-        }
-         //Adding in Player Code
+         
+     	  //Adding in Player Code
          this.collision();
-         if (direction < 25) {
+        if(direction < 25) {
+        	this.velY = -5.0f;
+        }
+        if((direction > 25) && (direction < 50)) {
+        	this.velY = 5.0f;
+        }
+        
+        if ((direction > 50) && (direction < 75)) {
+        	this.velX = -5.0f;
+        }
+        if((direction > 75) && (direction < 100)) {
+        	this.velX = 5.0f;
+        }
+         /*if (direction < 25) {
              this.velY = -7.0f;
          }
          else if (!(direction < 25)) {
@@ -60,7 +72,7 @@ public class Enemy extends GameObject
          else if (!((direction > 25) && (direction < 50))) {
              this.velY = 0.0f;
          }
-         if ((direction > 50) && (direction < 75)) {
+         /*if ((direction > 50) && (direction < 75)) {
          	System.out.print("MOVING RIGHT");
              this.velX = 7.0f;
          }
@@ -73,9 +85,9 @@ public class Enemy extends GameObject
          else if (!((direction > 75) && (direction < 100))) {
              this.velX = 0.0f;
          }
+         */
         for (int i = 0; i < this.handler.object.size(); ++i) {
             final GameObject tempObject = this.handler.object.get(i);
-            
             if (tempObject.getId() == ID.Bullet && this.getBounds().intersects(tempObject.getBounds())) {
                 this.hp -= 50;
                 this.handler.removeObject(tempObject);
@@ -95,11 +107,6 @@ public class Enemy extends GameObject
                 this.x += (int)(this.velX * -1.0f);
                 this.y += (int)(this.velY * -1.0f);
             }
- //           if (tempObject.getId() == ID.Crate && this.getBounds().intersects(tempObject.getBounds())) {
- //               final Game game = this.game;
- //               game.ammo += 10;
- //               this.handler.removeObject(tempObject);
- //           }
         }
     }
     

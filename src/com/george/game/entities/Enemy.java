@@ -16,6 +16,8 @@ public class Enemy extends GameObject
     Random r;
     int choose;
     int hp;
+    float speedP = 4.5f;
+    float speedN = -4.5f;
     
     //Adding in temporary Game field
     Game game;
@@ -42,50 +44,30 @@ public class Enemy extends GameObject
         this.y += (int)this.velY;
         this.choose = this.r.nextInt(10);
         
-        System.out.println("The direction is: " + direction);
-     	  direction = randomNumber.nextDouble() * 100;
+     	direction = randomNumber.nextDouble() * 100;
          
-     	  //Adding in Player Code
-         this.collision();
-        if(direction < 25) {
-        	this.velY = -5.0f;
-        }
-        if((direction > 25) && (direction < 50)) {
-        	this.velY = 5.0f;
-        }
+     	//Adding in Player Code
+        this.collision();
         
-        if ((direction > 50) && (direction < 75)) {
-        	this.velX = -5.0f;
+        if(counter%10 == 0) {
+        
+        if(direction < 25) 
+        {
+        	this.velY = speedN;
         }
-        if((direction > 75) && (direction < 100)) {
-        	this.velX = 5.0f;
+        if((direction > 25) && (direction < 50)) 
+        {
+        	this.velY = speedP;
         }
-         /*if (direction < 25) {
-             this.velY = -7.0f;
-         }
-         else if (!(direction < 25)) {
-             this.velY = 0.0f;
-         }
-         if ((direction > 25) && (direction < 50)) {
-             this.velY = 7.0f;
-         }
-         else if (!((direction > 25) && (direction < 50))) {
-             this.velY = 0.0f;
-         }
-         /*if ((direction > 50) && (direction < 75)) {
-         	System.out.print("MOVING RIGHT");
-             this.velX = 7.0f;
-         }
-         else if (!((direction > 50) && (direction < 75))) {
-             this.velX = 0.0f;
-         }
-         if ((direction > 75) && (direction < 100)) {
-             this.velX = -7.0f;
-         }
-         else if (!((direction > 75) && (direction < 100))) {
-             this.velX = 0.0f;
-         }
-         */
+        if ((direction > 50) && (direction < 75)) 
+        {
+        	this.velX = speedN;
+        }
+        if((direction > 75) && (direction < 100)) 
+        {
+        	this.velX = speedP;
+        }
+        }
         for (int i = 0; i < this.handler.object.size(); ++i) {
             final GameObject tempObject = this.handler.object.get(i);
             if (tempObject.getId() == ID.Bullet && this.getBounds().intersects(tempObject.getBounds())) {

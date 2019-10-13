@@ -6,6 +6,7 @@ public enum ID {
 	Enemey(),
 	Bullet(),
 	Crate(),
+	Health(),
 	Block();
-
+	
 }

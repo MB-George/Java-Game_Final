@@ -10,9 +10,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import com.george.game.id.ID;
 import com.george.game.gfx.BufferedImageLoader;
-import java.awt.event.MouseListener;
 import com.george.game.input.MouseInput;
-import java.awt.event.KeyListener;
 import com.george.game.input.KeyInput;
 import com.george.game.window.Window;
 import java.awt.image.BufferedImage;
@@ -28,6 +26,7 @@ public class Game extends Canvas implements Runnable
     private Camera camera;
     private BufferedImage level;
     public int ammo;
+    private float health = 100f;
     
     public Game() 
     {
@@ -108,9 +107,15 @@ public class Game extends Canvas implements Runnable
         }
         final Graphics g = bs.getDrawGraphics();
         final Graphics2D g2d = (Graphics2D)g;
+        
+        //Draw Under
+        
         g.setColor(Color.lightGray);
         g.fillRect(0, 0, 1000, 563);
+        
         g2d.translate(-this.camera.getX(), -this.camera.getY());
+        
+        //End Drawing
         this.handler.render(g);
         g2d.translate(-this.camera.getX(), -this.camera.getY());
         g.dispose();

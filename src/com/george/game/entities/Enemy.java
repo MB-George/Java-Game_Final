@@ -68,7 +68,8 @@ public class Enemy extends GameObject
         	this.velX = speedP;
         }
         }
-        for (int i = 0; i < this.handler.object.size(); ++i) {
+        
+        for (int i = 0; i < this.handler.object.size(); i++) {
             final GameObject tempObject = this.handler.object.get(i);
             if (tempObject.getId() == ID.Bullet && this.getBounds().intersects(tempObject.getBounds())) {
                 this.hp -= 50;

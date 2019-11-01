@@ -49,7 +49,7 @@ public class Game extends Canvas implements Runnable
         (this.thread = new Thread(this)).start();
     }
     
-    private synchronized void stop() 
+    public synchronized void stop() 
     {
         this.isRunning = false;
         try {

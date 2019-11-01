@@ -7,11 +7,16 @@ import com.george.game.id.ID;
 import com.george.game.Game;
 import com.george.game.Handler;
 import com.george.game.GameObject;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Player extends GameObject
 {
     Handler handler;
     Game game;
+    
+    int hp = 100;
     
     public Player(final int x, final int y, final ID id, final Handler handler, final Game game) {
         super(x, y, id);
@@ -24,6 +29,7 @@ public class Player extends GameObject
         this.x += (int)this.velX;
         this.y += (int)this.velY;
         this.collision();
+        
         if (this.handler.isUp()) {
             this.velY = -8.0f;
         }
@@ -61,6 +67,23 @@ public class Player extends GameObject
                 final Game game = this.game;
                 game.ammo += 10;
                 this.handler.removeObject(tempObject);
+            }
+            if (tempObject.getId() == ID.Enemey && this.getBounds().intersects(tempObject.getBounds())) {
+            	this.hp -= 5;
+            	if (hp <= 0) {
+            		this.handler.removeObject(this);
+            		// Pop Up Dialogue
+            		final JFrame parent = new JFrame();
+                    int RestartSelection = JOptionPane.showConfirmDialog(parent, "You Ded. Do You Want to Restart?", null, 0); 
+                    
+                    if (RestartSelection == 1){
+                    	this.game.stop();
+                    }
+                    if (RestartSelection == 0) {
+                    	new Game();
+                    	this.game.stop();                  	
+                    }
+            	}
             }
         }
     }
